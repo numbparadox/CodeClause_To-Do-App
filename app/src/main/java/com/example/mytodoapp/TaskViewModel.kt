@@ -1,5 +1,7 @@
 package com.example.mytodoapp
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -16,6 +18,7 @@ class TaskViewModel(private val repository: TaskItemRepository): ViewModel()
         repository.updateTaskItem(taskItem)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun setCompleted(taskItem: TaskItem) = viewModelScope.launch {
         if (!taskItem.isCompleted())
             taskItem.completedDateString = TaskItem.dateFormatter.format(LocalDate.now())

@@ -28,9 +28,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+        kotlinOptions.jvmTarget = "11"
+    }
     kotlinOptions {
         jvmTarget = "11"
     }
+    /*kotlin {
+        jvmToolchain {
+            // Use the appropriate Java version you want to target
+            // The following example assumes Java 11
+            (JavaVersion.VERSION_11).languageVersion = "11"
+        }
+    }*/
     buildFeatures{
         viewBinding true
     }
@@ -51,6 +61,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
     implementation "androidx.activity:activity-ktx:1.7.2"
     implementation "androidx.fragment:fragment-ktx:1.5.7"
-    //annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    //annotationProcessor "androidx.room:room-compiler:2.5.1"
     implementation 'androidx.room:room-runtime:2.5.1'
 }

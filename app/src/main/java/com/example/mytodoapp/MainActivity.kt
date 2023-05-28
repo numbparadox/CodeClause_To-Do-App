@@ -1,7 +1,9 @@
 package com.example.mytodoapp
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mytodoapp.databinding.ActivityMainBinding
 
@@ -17,7 +19,6 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 
         binding.newTaskButton.setOnClickListener {
             NewTaskSheet(null).show(supportFragmentManager, "newTaskTag")
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener
         NewTaskSheet(taskItem).show(supportFragmentManager,"newTaskTag")
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun completeTaskItem(taskItem: TaskItem)
     {
         taskViewModel.setCompleted(taskItem)
